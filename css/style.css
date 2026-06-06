@@ -197,7 +197,7 @@ a { text-decoration: none; color: inherit; }
 .section-header p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; }
 
 /* ===== PROJECTS ===== */
-.projects-section { padding: 6rem 0; }
+.projects-section { padding: 3rem 0; }
 .project-block {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 3rem; align-items: start; margin-bottom: 6rem;
@@ -438,7 +438,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ===== WHY HOABL ===== */
-.why-section { padding: 6rem 0; }
+.why-section { padding: 3rem 0; }
 .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 .why-card { padding: 2.5rem 2rem; text-align: center; transition: transform 0.3s, box-shadow 0.3s; cursor: default; }
 .why-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(0,0,0,0.65); border-color: rgba(242,110,34,0.3); }
@@ -447,7 +447,7 @@ a { text-decoration: none; color: inherit; }
 .why-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
 
 /* ===== CONTACT & FORM ===== */
-.contact-section { padding: 6rem 0; }
+.contact-section { padding: 3rem 0; }
 .contact-wrapper { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; }
 .contact-left { padding-top: 1rem; }
 .contact-left h2 { font-family: 'Playfair Display',serif; font-size: clamp(1.8rem,3.5vw,2.6rem); font-weight: 700; margin: 0.8rem 0 1rem; line-height: 1.2; }
@@ -660,7 +660,7 @@ a { text-decoration: none; color: inherit; }
 
 /* ===== PROJ SECTIONS & HEADERS ===== */
 .proj-section {
-  padding: 6rem 1.5rem;
+  padding: 3rem 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -831,7 +831,7 @@ a { text-decoration: none; color: inherit; }
 .proj-footer {
   background: #02050b;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 6rem 2rem 4rem;
+  padding: 3rem 2rem 4rem;
 }
 .footer-container {
   max-width: 1200px;
