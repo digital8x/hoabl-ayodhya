@@ -869,10 +869,17 @@
         object-fit: cover; 
         height: 320px; 
         width: 480px;
+        max-width: none !important;
         border-radius: 12px; 
         cursor: pointer; 
         transition: transform 0.3s;
         flex-shrink: 0;
+      }
+      @media (max-width: 768px) {
+        .gallery-marquee-img {
+          height: 180px;
+          width: 280px;
+        }
       }
       .gallery-marquee-img:hover {
         transform: scale(1.03);
