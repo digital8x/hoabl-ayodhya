@@ -255,6 +255,52 @@ try {
         }
     }
 
+    // --- Google Sheets Webhook ---
+    $sheetWebhook = defined('GOOGLE_SHEETS_WEBHOOK') ? GOOGLE_SHEETS_WEBHOOK : '';
+    if (isset($settings['google_sheets_webhook']) && !empty($settings['google_sheets_webhook'])) {
+        $sheetWebhook = $settings['google_sheets_webhook'];
+    }
+    
+    // Validate webhook URL
+    if (!empty($sheetWebhook) && !filter_var($sheetWebhook, FILTER_VALIDATE_URL)) {
+        error_log("Invalid Google Sheets webhook URL: " . $sheetWebhook);
+        $sheetWebhook = '';
+    }
+
+    if (!empty($sheetWebhook)) {
+        $sheetData = [
+            'date' => date('Y-m-d H:i:s'),
+            'name' => $name,
+            'phone' => $phone,
+            'email' => $email,
+            'project_interest' => $project_interest,
+            'source_item' => $source_item,
+            'referral_url' => $referral_url,
+            'ip' => $ip,
+            'country' => $geo['countryCode'],
+            'device' => $device
+        ];
+
+        $chSheet = curl_init($sheetWebhook);
+        curl_setopt($chSheet, CURLOPT_POST, 1);
+        curl_setopt($chSheet, CURLOPT_POSTFIELDS, http_build_query($sheetData));
+        curl_setopt($chSheet, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($chSheet, CURLOPT_TIMEOUT, 3);
+        curl_setopt($chSheet, CURLOPT_FOLLOWLOCATION, true);
+        
+        // Execute synchronous request (blocks up to 3s)
+        $result = curl_exec($chSheet);
+        $httpCode = curl_getinfo($chSheet, CURLINFO_HTTP_CODE);
+        
+        if ($result === false) {
+            error_log("Google Sheets webhook curl error: " . curl_error($chSheet));
+        } elseif ($httpCode < 200 || $httpCode >= 300) {
+            error_log("Google Sheets webhook failed with HTTP code $httpCode. Response: " . $result);
+        }
+        
+        curl_close($chSheet);
+    }
+
     echo json_encode(['success' => true, 'message' => 'Enquiry captured successfully!']);
 } catch (Exception $e) {
     error_log("Lead processor exception: " . $e->getMessage());
